@@ -7,16 +7,16 @@ import java.sql.SQLException;
 /**
  * @author Aldwin Delgado on Apr 08, 2020
  */
-public class SingletonClass {
+public class SingletonPattern {
 
     /*  volatile = new to Java; marks this class to remain a singleton all throughout the duration
         this app is running
      */
-    private static volatile SingletonClass instance = null;
+    private static volatile SingletonPattern instance = null;
     private static volatile Connection connection = null;
 
     // avoid people to instantiating the class outside the created method 'getInstance()'
-    private SingletonClass() {
+    private SingletonPattern() {
         try {
             DriverManager.registerDriver(new org.apache.derby.jdbc.EmbeddedDriver());
         } catch (SQLException sqlEx) {
@@ -35,7 +35,7 @@ public class SingletonClass {
     }
 
     // return the instantiated class
-    public static SingletonClass getInstance() {
+    public static SingletonPattern getInstance() {
         /*  make the singleton implementation lazily loaded by instantiating the class
             IF and ONLY IF the 'instance' variable IS NULL and not instantiated anywhere else
          */
@@ -43,9 +43,9 @@ public class SingletonClass {
             /* marks this class thread-safe and will not instantiate another SingletonClass
                once it created one even if two threads are racing to instantiate this class
             */
-            synchronized (SingletonClass.class) {
+            synchronized (SingletonPattern.class) {
                 if (instance == null) {
-                    instance = new SingletonClass();
+                    instance = new SingletonPattern();
                 }
             }
         }
@@ -62,7 +62,7 @@ public class SingletonClass {
             /* marks this class thread-safe and will not instantiate another SingletonClass
                once it created one even if two threads are racing to instantiate this class
             */
-            synchronized (SingletonClass.class) {
+            synchronized (SingletonPattern.class) {
                 if (connection == null) {
                     try {
                         String dbUrl = "jdbc:derby:memory:testjava/testdb;create=true";

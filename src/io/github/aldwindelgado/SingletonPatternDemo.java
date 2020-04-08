@@ -9,18 +9,18 @@ import java.sql.Statement;
  *
  * @author Aldwin Delgado on Apr 08, 2020
  */
-public class SingletonClassDemo {
+public class SingletonPatternDemo {
 
     public static void main(String[] args) {
-        SingletonClass singletonClass = SingletonClass.getInstance();
+        SingletonPattern singletonPattern = SingletonPattern.getInstance();
 
         long timeBefore = 0;
         long timeAfter = 0;
 
-        System.out.println(singletonClass);
+        System.out.println(singletonPattern);
 
         timeBefore = System.currentTimeMillis();
-        Connection connection = singletonClass.getConnection();
+        Connection connection = singletonPattern.getConnection();
         timeAfter = System.currentTimeMillis();
 
         System.out.println("Before instantiating the 'connection' variable");
@@ -39,7 +39,7 @@ public class SingletonClassDemo {
         }
 
         timeBefore = System.currentTimeMillis();
-        connection = singletonClass.getConnection();
+        connection = singletonPattern.getConnection();
         timeAfter = System.currentTimeMillis();
 
         System.out.println("After instantiating the 'connection' variable");
