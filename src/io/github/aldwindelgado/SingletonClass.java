@@ -5,8 +5,7 @@ package io.github.aldwindelgado;
  */
 public class SingletonClass {
 
-    // instantiate the class one-time only
-    private static SingletonClass instance = new SingletonClass();
+    private static SingletonClass instance = null;
 
     // avoid people to instantiating the class outside the created method 'getInstance()'
     private SingletonClass() {
@@ -14,6 +13,13 @@ public class SingletonClass {
 
     // return the instantiated class
     public static SingletonClass getInstance() {
+        /*  make the singleton implementation lazily loaded by instantiating the class
+            IF and ONLY IF the 'instance' variable IS NULL
+         */
+        if (instance == null) {
+            instance = new SingletonClass();
+        }
+
         return instance;
     }
 
